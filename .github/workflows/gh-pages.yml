@@ -16,6 +16,9 @@ permissions:
   id-token: write
 concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}  
+environment:
+  name: github-pages
+  url: ${{ steps.deployment.outputs.page_url }}      
 
 jobs:
   build:
