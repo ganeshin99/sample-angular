@@ -5,23 +5,24 @@ on:
   push:
     branches:
       - master
+  pull_request:    
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: write
-  pages: write
-  id-token: write
-concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}     
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}     
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
         fetch-depth: 0
@@ -32,18 +33,18 @@ jobs:
     - run: npm ci
     - run: npm run build
 
-    - name: Init new repo in dist folder and commit generated files
-      run: |
-        pwd
-        ls -ll
-        cd dist
-        git init
-        git add -A
-        git config user.name github-actions[bot]
-        git config user.email github-actions[bot]@users.noreply.github.com
-        git commit -m 'deploy'
-        git config --global --add safe.directory /github/workspace/dist
-    - name: Deploy
+#    - name: Init new repo in dist folder and commit generated files
+#      run: |
+#        pwd
+#        ls -ll
+#        cd dist
+#        git init
+#        git add -A
+#        git config user.name github-actions[bot]
+#        git config user.email github-actions[bot]@users.noreply.github.com
+#        git commit -m 'deploy'
+#        git config --global --add safe.directory /github/workspace/dist
+    - name: Deploy to pages
       uses: peaceiris/actions-gh-pages@v3
       if: ${{ github.ref == 'refs/heads/master' }}
       with:
