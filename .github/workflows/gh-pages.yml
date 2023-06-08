@@ -43,16 +43,17 @@ jobs:
         git config --local user.name "ganeshin99"
         git commit -m 'deploy'
         git config --global --add safe.directory /github/workspace/dist
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      if: ${{ github.ref == 'refs/heads/master' }}
+    #- name: Deploy
+    #  uses: peaceiris/actions-gh-pages@v3
+    #  if: ${{ github.ref == 'refs/heads/master' }}
+    #  with:
+    #    github_token: ${{ secrets.GITHUB_TOKEN }}
+    #    publish_dir: ./dist   
+    - name: Force push to destination branches to gh-pages
+      uses: ad-m/github-push-action@v0.5.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist   
-#    - name: Force push to destination branches to gh-pages
-#      uses: ad-m/github-push-action@v0.5.0
-#      with:
-#        github_token: ${{ secrets.GITHUB_TOKEN }}
-#        branch: ${{ github.ref }}
-#        force: true
-#        directory: /github/workspace/dist
+        branch: ${{ github.ref }}
+        force: true
+        directory: ./dist
+        timeout: 30
