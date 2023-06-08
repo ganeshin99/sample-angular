@@ -3,8 +3,11 @@ name: Deploy site ganeshin
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches:
-      - master
+    branches: 
+      - master 
+      - main
+      - QA
+      
   pull_request:    
 
   # Allows you to run this workflow manually from the Actions tab
@@ -43,17 +46,21 @@ jobs:
         git config user.name github-actions[bot]
         git config user.email github-actions[bot]@users.noreply.github.com
         git commit -m 'deploy'
-        git config --global --add safe.directory /github/workspace/dist
-#    - name: Deploy to pages
-#      uses: peaceiris/actions-gh-pages@v3
-#      if: ${{ github.ref == 'refs/heads/master' }}
-#      with:
-#        github_token: ${{ secrets.GITHUB_TOKEN }}
-#        publish_dir: ./dist   
+  ########################### Send Enviroments ##########################
     - name: Force push to destination branches to gh-pages
       uses: ad-m/github-push-action@master
+      if: ${{ github.ref == 'refs/heads/master' }}
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: gh-pages
+        force: true
+        directory: ./dist
+  ########################### Send Enviroments ##########################
+    - name: Force push to destination branches to gh-pages
+      uses: ad-m/github-push-action@master
+      if: ${{ github.ref == 'refs/heads/QA' }}
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: gh-pages-qa
         force: true
         directory: ./dist
