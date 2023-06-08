@@ -56,11 +56,9 @@ jobs:
         force: true
         directory: ./dist
   ########################### Send Enviroments ##########################
-    - name: Force push to destination branches to gh-pages-QA
-      uses: ad-m/github-push-action@master
+    - name: Deploy to distinct directory
+      uses: peaceiris/actions-gh-pages@v3
       if: ${{ github.ref == 'refs/heads/QA' }}
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: gh-pages-qa
-        force: true
-        directory: ./dist
+        destination_dir: regresion-tests
