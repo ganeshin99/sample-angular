@@ -39,8 +39,8 @@ jobs:
         cd dist
         git init
         git add -A
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "ganeshin99"
+        git config user.name github-actions[bot]
+        git config user.email github-actions[bot]@users.noreply.github.com
         git commit -m 'deploy'
         git config --global --add safe.directory /github/workspace/dist
     #- name: Deploy
@@ -50,10 +50,10 @@ jobs:
     #    github_token: ${{ secrets.GITHUB_TOKEN }}
     #    publish_dir: ./dist   
     - name: Force push to destination branches to gh-pages
-      uses: ad-m/github-push-action@v0.5.0
+      uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: ${{ github.ref }}
         force: true
         directory: ./dist
-        timeout: 30
+        force_with_lease: true
