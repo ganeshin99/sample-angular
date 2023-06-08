@@ -56,4 +56,4 @@ jobs:
         branch: ${{ github.ref }}
         force: true
         directory: ./dist
-        force_with_lease: true
+        force: true
