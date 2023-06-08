@@ -3,7 +3,10 @@ name: Deploy site ganeshin
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: [ main ]
+    branches: 
+      - master 
+      - main
+      - QA
       
   pull_request:    
 
