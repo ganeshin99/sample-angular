@@ -70,35 +70,35 @@ jobs:
         force: true
         directory: ./dist
   ########################### Send path regresion ##########################    
-    - name: Deploy to distinct directory
+    - name: Deploy to distinct directory regresion
       uses: peaceiris/actions-gh-pages@v3
       if: ${{ github.ref == 'refs/heads/QA' }}
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         destination_dir: regresion-tests
   ########################### Send path integracion ##########################       
-    - name: Deploy to distinct directory
+    - name: Deploy to distinct directory smoke
       uses: peaceiris/actions-gh-pages@v3
       if: ${{ github.ref == 'refs/heads/smoke' }} 
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         destination_dir: smoke-tests
   ########################### Send path Regression ##########################       
-    - name: Deploy to distinct directory
+    - name: Deploy to distinct directory regression
       uses: peaceiris/actions-gh-pages@v3
       if: ${{ github.ref == 'refs/heads/regression' }} 
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         destination_dir: regression-tests      
   ########################### Send path callcenter ##########################       
-    - name: Deploy to distinct directory
+    - name: Deploy to distinct directory callcenter
       uses: peaceiris/actions-gh-pages@v3
       if: ${{ github.ref == 'refs/heads/callcenter' }} 
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         destination_dir: callcenter-tests 
   ########################### Send path Onboarding ##########################       
-    - name: Deploy to distinct directory
+    - name: Deploy to distinct directory onboarding
       uses: peaceiris/actions-gh-pages@v3
       if: ${{ github.ref == 'refs/heads/onboarding' }} 
       with:
