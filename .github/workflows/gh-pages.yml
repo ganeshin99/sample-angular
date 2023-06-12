@@ -1,5 +1,5 @@
 name: Deploy site ganeshin
-
+#####pendiente: sacar las ramas y la sencuenciacion para el acumulado
 on:
   # Runs on pushes targeting the default branch
   push:
@@ -7,8 +7,22 @@ on:
       - master 
       - main
       - QA
-      
-  pull_request:    
+      - onboarding
+      - callcenter
+      - regression
+      - smoke
+      - regresion
+
+  pull_request:  
+    branches: 
+      - master 
+      - main
+      - QA
+      - onboarding
+      - callcenter
+      - regression
+      - smoke
+      - regresion
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -49,24 +63,44 @@ jobs:
   ########################### Send Enviroments ##########################
     - name: Force push to destination branches to gh-pages
       uses: ad-m/github-push-action@master
-      if: ${{ github.ref == 'refs/heads/master' }}
+      if: ${{ github.ref == 'refs/heads/master' }} 
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: gh-pages
         force: true
         directory: ./dist
-  ########################### Send Enviroments ##########################
-#    - name: Force push to destination branches to gh-pages
-#      uses: ad-m/github-push-action@master
-#      if: ${{ github.ref == 'refs/heads/QA' }}
-#      with:
-#        github_token: ${{ secrets.GITHUB_TOKEN }}
-#        branch: gh-pages-qa
-#        force: true
-#        directory: ./dist      
+  ########################### Send path regresion ##########################    
     - name: Deploy to distinct directory
       uses: peaceiris/actions-gh-pages@v3
       if: ${{ github.ref == 'refs/heads/QA' }}
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         destination_dir: regresion-tests
+  ########################### Send path integracion ##########################       
+    - name: Deploy to distinct directory
+      uses: peaceiris/actions-gh-pages@v3
+      if: ${{ github.ref == 'refs/heads/smoke' }} 
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        destination_dir: smoke-tests
+  ########################### Send path Regression ##########################       
+    - name: Deploy to distinct directory
+      uses: peaceiris/actions-gh-pages@v3
+      if: ${{ github.ref == 'refs/heads/regression' }} 
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        destination_dir: regression-tests      
+  ########################### Send path callcenter ##########################       
+    - name: Deploy to distinct directory
+      uses: peaceiris/actions-gh-pages@v3
+      if: ${{ github.ref == 'refs/heads/callcenter' }} 
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        destination_dir: callcenter-tests 
+  ########################### Send path Onboarding ##########################       
+    - name: Deploy to distinct directory
+      uses: peaceiris/actions-gh-pages@v3
+      if: ${{ github.ref == 'refs/heads/onboarding' }} 
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        destination_dir: onboarding-tests               
