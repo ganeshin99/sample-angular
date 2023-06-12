@@ -82,14 +82,7 @@ jobs:
       if: ${{ github.ref == 'refs/heads/smoke' }} 
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        destination_dir: smoke-tests-${{ github.head_ref }}
-  ########################### Send path Regression ##########################       
-    - name: Deploy to distinct directory regression
-      uses: peaceiris/actions-gh-pages@v3
-      if: ${{ github.ref == 'refs/heads/regression' }} 
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        destination_dir: regression-tests-${{ github.head_ref }}      
+        destination_dir: smoke-tests-${{ github.head_ref }}   
   ########################### Send path callcenter ##########################       
     - name: Deploy to distinct directory callcenter
       uses: peaceiris/actions-gh-pages@v3
