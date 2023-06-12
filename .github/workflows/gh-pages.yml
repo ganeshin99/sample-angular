@@ -61,6 +61,7 @@ jobs:
         git config user.name github-actions[bot]
         git config user.email github-actions[bot]@users.noreply.github.com
         git commit -m 'deploy'
+        echo ${{ github.head_ref }} 
   ########################### Send Enviroments ##########################
     - name: Force push to destination branches to gh-pages
       uses: ad-m/github-push-action@master
