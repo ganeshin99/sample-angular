@@ -55,6 +55,7 @@ jobs:
       run: |
         pwd
         ls -ll
+        echo  "nueva ******* ${{ github.head_ref }} **********"
         cd dist
         git init
         git add -A
