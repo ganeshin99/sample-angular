@@ -75,7 +75,7 @@ jobs:
       if: ${{ github.ref == 'refs/heads/QA' }}
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        destination_dir: regresion-tests
+        destination_dir: regresion-tests-${{ github.head_ref }}
   ########################### Send path integracion ##########################       
     - name: Deploy to distinct directory smoke
       uses: peaceiris/actions-gh-pages@v3
