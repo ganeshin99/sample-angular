@@ -76,6 +76,7 @@ jobs:
       if: ${{ github.ref == 'refs/heads/QA' }}
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: dist
         destination_dir: regresion-tests-${{ github.head_ref }}
   ########################### Send path integracion ##########################       
     - name: Deploy to distinct directory smoke
@@ -83,6 +84,7 @@ jobs:
       if: ${{ github.ref == 'refs/heads/smoke' }} 
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: dist
         destination_dir: smoke-tests-${{ github.head_ref }}   
   ########################### Send path callcenter ##########################       
     - name: Deploy to distinct directory callcenter
@@ -90,6 +92,7 @@ jobs:
       if: ${{ github.ref == 'refs/heads/callcenter' }} 
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: dist
         destination_dir: callcenter-tests-${{ github.head_ref }} 
   ########################### Send path Onboarding ##########################       
     - name: Deploy to distinct directory onboarding
