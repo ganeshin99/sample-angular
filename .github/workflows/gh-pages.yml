@@ -87,7 +87,7 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: dist
-        destination_dir: smoke-tests-${{ github.head_ref }}   
+        destination_dir: smoke-tests 
   ########################### Send path callcenter ##########################       
     - name: Deploy to distinct directory callcenter
       uses: peaceiris/actions-gh-pages@v3
@@ -95,12 +95,12 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: dist
-        destination_dir: callcenter-tests-${{ github.head_ref }} 
+        destination_dir: callcenter-tests
   ########################### Send path Onboarding ##########################       
     - name: Deploy to distinct directory onboarding
       uses: peaceiris/actions-gh-pages@v3
       if: ${{ github.ref == 'refs/heads/onboarding' }} 
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        destination_dir: onboarding-tests-${{ github.head_ref }}               
+        destination_dir: onboarding-tests              
         publish_dir: dist
