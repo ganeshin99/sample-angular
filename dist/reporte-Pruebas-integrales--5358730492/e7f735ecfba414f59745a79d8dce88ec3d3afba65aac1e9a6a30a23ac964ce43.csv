@@ -1,0 +1,3 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Remittances available negative tests","GET - Remittances Available With Expired Token Test","SUCCESS","2023-06-23T17:02:16.888Z[Etc/UTC]","0.0","4.48"
+"Remittances available negative tests","POST - Remittances Available With Invalid Method Test","SUCCESS","2023-06-23T17:02:21.674Z[Etc/UTC]","0.0","2.15"
